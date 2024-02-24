@@ -1,20 +1,43 @@
-var aisle_num = ["Aisle 1", "Aisle 2", "Aisle 3", "Aisle 4", "Aisle 5", "Aisle 6", "Aisle 7"]
-function productLocation(sku) {
-    if (sku == 1) {
-        return aisle_num[0]
-    } else if (sku == 2) {
-        return aisle_num[1]
-    } else if (sku == 3) {
-        return aisle_num[2]
-    } else if (sku == 4) {
-        return aisle_num[3]
-    } else if (sku == 5) {
-        return aisle_num[4]
-    } else if (sku == 6) {
-        return aisle_num[5]
-    } else if (sku == 7) {
-        return aisle_num[6]
+// Initialize inventory object with items and their initial quantities
+let inventory = new Map([
+    ['item1', 50],
+    ['item2', 20],
+    ['item3', 100],
+    ['item4', 30]
+]);
+
+// Function to record a purchase
+function recordPurchase(item, quantity) {
+    if (inventory.has(item)) {
+        let currentQuantity = inventory.get(item);
+        inventory.set(item, currentQuantity + quantity);
+        console.log(`Purchase recorded: ${quantity} of ${item}`);
+    } else {
+        inventory.set(item, quantity);
+        console.log(`New item added: ${item} (${quantity})`);
     }
 }
-            
-console.log(productLocation(5))
+
+// Function to record a sale
+function recordSale(item, quantity) {
+    if (inventory.has(item)) {
+        let currentQuantity = inventory.get(item);
+        if (currentQuantity >= quantity) {
+            inventory.set(item, currentQuantity - quantity);
+            console.log(`Sale recorded: ${quantity} of ${item}`);
+        } else {
+            console.log(`Insufficient quantity of ${item} available for sale.`);
+        }
+    } else {
+        console.log(`Item ${item} not found in inventory.`);
+    }
+}
+
+// Display current inventory
+function displayInventory() {
+    console.log("Current Inventory:");
+    inventory.forEach((value, key) => {
+        console.log(`${key}: ${value}`);
+    });
+}
+
