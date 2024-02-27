@@ -1,9 +1,13 @@
 // Initialize inventory object with items and their initial quantities
 let inventory = new Map([
-    ['item1', 50],
-    ['item2', 20],
-    ['item3', 100],
-    ['item4', 30]
+    ['eggs', 5],
+    ['bread', 2],
+    ['potatoe', 3],
+    ['pork', 10],
+    ['chicken', 8],
+    ['beef', 20],
+    ['plantin', 1],
+    ['cilantro', 30]
 ]);
 
 // Function to record a purchase
@@ -16,7 +20,10 @@ function recordPurchase(item, quantity) {
         inventory.set(item, quantity);
         console.log(`New item added: ${item} (${quantity})`);
     }
+  
 }
+console.log(recordPurchase('cilantro', 2));
+
 
 // Function to record a sale
 function recordSale(item, quantity) {
